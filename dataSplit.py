@@ -10,10 +10,12 @@ import shutil
 PATH = '/home/gaobiao/Documents/KittiSeg/DATA/ladybug/'     # end with '/'
 TRAIN_FILE = '/home/gaobiao/Documents/KittiSeg/DATA/train.txt'
 TEST_FILE = '/home/gaobiao/Documents/KittiSeg/DATA/test.txt'
+TEST_FILE_WITH_GT = '/home/gaobiao/Documents/KittiSeg/DATA/test_gt.txt'
 VAL_FILE = '/home/gaobiao/Documents/KittiSeg/DATA/val.txt'
 f_train = open(TRAIN_FILE, 'w')
 f_test = open(TEST_FILE, 'w')
 f_val = open(VAL_FILE, 'w')
+f_test_gt = open(TEST_FILE_WITH_GT, 'w')
 
 data = []
 label = []
@@ -38,18 +40,20 @@ os.mkdir(PATH + 'test_gt')
 os.mkdir(PATH + 'val')
 os.mkdir(PATH + 'val_gt')
 for i in range(len(X_train)):
-    shutil.copy2(PATH + X_train[i], PATH + 'train/' + X_train[i])
-    shutil.copy2(PATH + Y_train[i], PATH + 'train_gt/' + Y_train[i])
+    shutil.move(PATH + X_train[i], PATH + 'train/' + X_train[i])
+    shutil.move(PATH + Y_train[i], PATH + 'train_gt/' + Y_train[i])
     f_train.write(PATH + 'train/' + X_train[i] + ' ' + PATH + 'train_gt/' + Y_train[i] + '\n')
 for i in range(len(X_test)):
-    shutil.copy2(PATH + X_test[i], PATH + 'test/' + X_test[i])
-    shutil.copy2(PATH + Y_test[i], PATH + 'test_gt/' + Y_test[i])
-    f_test.write(PATH + 'test/' + X_test[i] + ' ' + PATH + 'test_gt/' + Y_test[i] + '\n')
+    shutil.move(PATH + X_test[i], PATH + 'test/' + X_test[i])
+    shutil.move(PATH + Y_test[i], PATH + 'test_gt/' + Y_test[i])
+    f_test_gt.write(PATH + 'test/' + X_test[i] + ' ' + PATH + 'test_gt/' + Y_test[i] + '\n')
+    f_test.write(PATH + 'test/' + X_test[i] + '\n')
 for i in range(len(X_val)):
-    shutil.copy2(PATH + X_val[i], PATH + 'val/' + X_val[i])
-    shutil.copy2(PATH + Y_val[i], PATH + 'val_gt/' + Y_val[i])
+    shutil.move(PATH + X_val[i], PATH + 'val/' + X_val[i])
+    shutil.move(PATH + Y_val[i], PATH + 'val_gt/' + Y_val[i])
     f_val.write(PATH + 'val/' + X_val[i] + ' ' + PATH + 'val_gt/' + Y_val[i] + '\n')
 
 f_train.close()
 f_test.close()
 f_val.close()
+f_test_gt.close()
