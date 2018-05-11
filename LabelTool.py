@@ -10,24 +10,24 @@ newColor = 0
 NUM_OF_CLASSESS = 9
 
 def ColorMap(data, _img):
-    if data[0] == 0:
+    if data == 0:
         data = [0,0,0]
-    elif data[0] == 1:        # people
+    elif data == 1:        # people
         data = [0,0,255]
-    elif data[0] == 2:      # car
+    elif data == 2:      # car
         data = [255,0,0]
-    elif data[0] == 3:      # tree
+    elif data == 3:      # tree
         data = [0,255,0]
-    elif data[0] == 4:      # sign
+    elif data == 4:      # sign
         data = [255,0,255]
-    elif data[0] == 5:      # building
+    elif data == 5:      # building
         data = [255,255,0]
-    elif data[0] == 6:      # cyclist
+    elif data == 6:      # cyclist
         data = [0,128,255]
-    elif data[0] == 7:      # stop bicycle
+    elif data == 7:      # stop bicycle
         data = [128,64,0]
-    elif data[0] == 8:      # road
-        data = [117,149,208]
+    elif data == 8:      # road
+        data = [208,149,117]
     else:
         data = [_img[0], _img[0], _img[0]]
     return data
